@@ -1,1 +1,1 @@
-Event Driven Architecutre Demo
+Event Driven Architecture Demo
