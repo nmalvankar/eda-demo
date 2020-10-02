@@ -1,0 +1,90 @@
+﻿apiVersion: kafka.strimzi.io/v1alpha1
+kind: KafkaMirrorMaker2
+metadata:
+  creationTimestamp: '2020-10-01T19:56:53Z'
+  generation: 2
+  managedFields:
+    - apiVersion: kafka.strimzi.io/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:clusters': {}
+          'f:logging':
+            .: {}
+            'f:type': {}
+        'f:status':
+          'f:conditions': {}
+          'f:connectors': {}
+      manager: okhttp
+      operation: Update
+      time: '2020-10-02T17:55:22Z'
+  name: my-mm2-cluster
+  namespace: event-driven-demo
+  resourceVersion: '887565'
+  selfLink: >-
+    /apis/kafka.strimzi.io/v1alpha1/namespaces/event-driven-demo/kafkamirrormaker2s/my-mm2-cluster
+  uid: dfcf4dc4-96b3-48fc-8882-baffa011b2a2
+spec:
+  clusters:
+    - alias: operational-cluster
+      bootstrapServers: 'operational-cluster-kafka-bootstrap:9092'
+    - alias: investigation-cluster
+      bootstrapServers: 'investigation-cluster-kafka-bootstrap:9092'
+      config:
+        config.storage.replication.factor: 1
+        offset.storage.replication.factor: 1
+        status.storage.replication.factor: 1
+  connectCluster: investigation-cluster
+  mirrors:
+    - checkpointConnector:
+        config:
+          checkpoints.topic.replication.factor: 1
+      groupsPattern: .*
+      heartbeatConnector:
+        config:
+          heartbeats.topic.replication.factor: 1
+      sourceCluster: operational-cluster
+      sourceConnector:
+        config:
+          offset-syncs.topic.replication.factor: 1
+          replication.factor: 1
+          sync.topic.acls.enabled: 'false'
+      targetCluster: investigation-cluster
+      topicsPattern: transaction-whitelist
+  replicas: 1
+  version: 2.5.0
+status:
+  conditions:
+    - lastTransitionTime: '2020-10-02T17:55:22.117Z'
+      status: 'True'
+      type: Ready
+  connectors:
+    - connector:
+        state: RUNNING
+        worker_id: '10.128.2.22:8083'
+      name: operational-cluster->investigation-cluster.MirrorCheckpointConnector
+      tasks:
+        - id: 0
+          state: RUNNING
+          worker_id: '10.128.2.22:8083'
+      type: source
+    - connector:
+        state: RUNNING
+        worker_id: '10.128.2.22:8083'
+      name: operational-cluster->investigation-cluster.MirrorHeartbeatConnector
+      tasks:
+        - id: 0
+          state: RUNNING
+          worker_id: '10.128.2.22:8083'
+      type: source
+    - connector:
+        state: RUNNING
+        worker_id: '10.128.2.22:8083'
+      name: operational-cluster->investigation-cluster.MirrorSourceConnector
+      tasks:
+        - id: 0
+          state: RUNNING
+          worker_id: '10.128.2.22:8083'
+      type: source
+  observedGeneration: 2
+  url: 'http://my-mm2-cluster-mirrormaker2-api.event-driven-demo.svc:8083'

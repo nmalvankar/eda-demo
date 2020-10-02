@@ -1,0 +1,501 @@
+﻿apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    certified: 'false'
+    olm.targetNamespaces: registry
+    repository: 'https://github.com/Apicurio/apicurio-registry-operator'
+    support: Red Hat
+    alm-examples: >-
+      [{"apiVersion":"apicur.io/v1alpha1","kind":"ApicurioRegistry","metadata":{"name":"example-apicurioregistry"}}]
+    capabilities: Basic Install
+    olm.operatorNamespace: registry
+    containerImage: >-
+      registry.redhat.io/integration/service-registry-rhel8-operator@sha256:a81240d826cb120235384d88693c89f8ac4e913301b5c348f962975287cf278f
+    createdAt: '2020-06-04'
+    categories: ' Streaming & Messaging'
+    description: Deploy and manage Red Hat Integration service registry on OpenShift.
+    olm.operatorGroup: registry-l2lm9
+  selfLink: >-
+    /apis/operators.coreos.com/v1alpha1/namespaces/registry/clusterserviceversions/service-registry-operator.v1.0.2
+  resourceVersion: '475213'
+  name: service-registry-operator.v1.0.2
+  uid: ad5acb16-03b6-4d93-bf67-4b2b7e35ae08
+  creationTimestamp: '2020-10-01T18:51:25Z'
+  generation: 1
+  managedFields:
+    - apiVersion: operators.coreos.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:createdAt': {}
+            'f:alm-examples': {}
+            'f:description': {}
+            'f:capabilities': {}
+            .: {}
+            'f:containerImage': {}
+            'f:categories': {}
+            'f:certified': {}
+            'f:support': {}
+            'f:repository': {}
+        'f:spec':
+          'f:version': {}
+          'f:provider':
+            .: {}
+            'f:name': {}
+          'f:links': {}
+          'f:install':
+            .: {}
+            'f:spec':
+              .: {}
+              'f:clusterPermissions': {}
+              'f:deployments': {}
+              'f:permissions': {}
+            'f:strategy': {}
+          'f:maintainers': {}
+          'f:description': {}
+          'f:installModes': {}
+          'f:icon': {}
+          'f:customresourcedefinitions':
+            .: {}
+            'f:owned': {}
+          .: {}
+          'f:apiservicedefinitions': {}
+          'f:selector': {}
+          'f:displayName': {}
+          'f:keywords': {}
+      manager: catalog
+      operation: Update
+      time: '2020-10-01T18:51:25Z'
+    - apiVersion: operators.coreos.com/v1alpha1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            'f:olm.operatorGroup': {}
+            'f:olm.operatorNamespace': {}
+            'f:olm.targetNamespaces': {}
+          'f:labels':
+            .: {}
+            'f:olm.api.2abb4d3d30d60672': {}
+        'f:status':
+          .: {}
+          'f:conditions': {}
+          'f:lastTransitionTime': {}
+          'f:lastUpdateTime': {}
+          'f:message': {}
+          'f:phase': {}
+          'f:reason': {}
+          'f:requirementStatus': {}
+      manager: olm
+      operation: Update
+      time: '2020-10-01T18:51:31Z'
+  namespace: registry
+  labels:
+    olm.api.2abb4d3d30d60672: provided
+spec:
+  customresourcedefinitions:
+    owned:
+      - description: Red Hat Integration Service Registry
+        displayName: ApicurioRegistry
+        kind: ApicurioRegistry
+        name: apicurioregistries.apicur.io
+        resources:
+          - kind: Deployment
+            name: ''
+            version: v1
+          - kind: Service
+            name: ''
+            version: v1
+          - kind: ReplicaSet
+            name: ''
+            version: v1
+          - kind: Pod
+            name: ''
+            version: v1
+          - kind: Secret
+            name: ''
+            version: v1
+          - kind: ConfigMap
+            name: ''
+            version: v1
+        specDescriptors:
+          - description: Configuration
+            displayName: Configuration
+            path: configuration
+          - description: Deployment
+            displayName: Deployment
+            path: deployment
+          - description: Image
+            displayName: Image
+            path: image
+        statusDescriptors:
+          - description: Deployment Name
+            displayName: Deployment Name
+            path: deploymentName
+          - description: Image
+            displayName: Image
+            path: image
+          - description: Ingress Name
+            displayName: Ingress Name
+            path: ingressName
+          - description: Replica Count
+            displayName: Replica Count
+            path: replicaCount
+          - description: Route
+            displayName: Route
+            path: route
+          - description: Service Name
+            displayName: Service Name
+            path: serviceName
+        version: v1alpha1
+  apiservicedefinitions: {}
+  keywords:
+    - integration
+    - streaming
+    - messaging
+    - api
+    - schemas
+    - registry
+    - service
+    - service-registry
+  displayName: Red Hat Integration - Service Registry Operator
+  provider:
+    name: Red Hat
+  installModes:
+    - supported: true
+      type: OwnNamespace
+    - supported: true
+      type: SingleNamespace
+    - supported: false
+      type: MultiNamespace
+    - supported: false
+      type: AllNamespaces
+  version: 1.0.2
+  icon:
+    - base64data: >-
+        PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxOTIgMTQ1Ij48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2UwMDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPlJlZEhhdC1Mb2dvLUhhdC1Db2xvcjwvdGl0bGU+PHBhdGggZD0iTTE1Ny43Nyw2Mi42MWExNCwxNCwwLDAsMSwuMzEsMy40MmMwLDE0Ljg4LTE4LjEsMTcuNDYtMzAuNjEsMTcuNDZDNzguODMsODMuNDksNDIuNTMsNTMuMjYsNDIuNTMsNDRhNi40Myw2LjQzLDAsMCwxLC4yMi0xLjk0bC0zLjY2LDkuMDZhMTguNDUsMTguNDUsMCwwLDAtMS41MSw3LjMzYzAsMTguMTEsNDEsNDUuNDgsODcuNzQsNDUuNDgsMjAuNjksMCwzNi40My03Ljc2LDM2LjQzLTIxLjc3LDAtMS4wOCwwLTEuOTQtMS43My0xMC4xM1oiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xMjcuNDcsODMuNDljMTIuNTEsMCwzMC42MS0yLjU4LDMwLjYxLTE3LjQ2YTE0LDE0LDAsMCwwLS4zMS0zLjQybC03LjQ1LTMyLjM2Yy0xLjcyLTcuMTItMy4yMy0xMC4zNS0xNS43My0xNi42QzEyNC44OSw4LjY5LDEwMy43Ni41LDk3LjUxLjUsOTEuNjkuNSw5MCw4LDgzLjA2LDhjLTYuNjgsMC0xMS42NC01LjYtMTcuODktNS42LTYsMC05LjkxLDQuMDktMTIuOTMsMTIuNSwwLDAtOC40MSwyMy43Mi05LjQ5LDI3LjE2QTYuNDMsNi40MywwLDAsMCw0Mi41Myw0NGMwLDkuMjIsMzYuMywzOS40NSw4NC45NCwzOS40NU0xNjAsNzIuMDdjMS43Myw4LjE5LDEuNzMsOS4wNSwxLjczLDEwLjEzLDAsMTQtMTUuNzQsMjEuNzctMzYuNDMsMjEuNzdDNzguNTQsMTA0LDM3LjU4LDc2LjYsMzcuNTgsNTguNDlhMTguNDUsMTguNDUsMCwwLDEsMS41MS03LjMzQzIyLjI3LDUyLC41LDU1LC41LDc0LjIyYzAsMzEuNDgsNzQuNTksNzAuMjgsMTMzLjY1LDcwLjI4LDQ1LjI4LDAsNTYuNy0yMC40OCw1Ni43LTM2LjY1LDAtMTIuNzItMTEtMjcuMTYtMzAuODMtMzUuNzgiLz48L3N2Zz4=
+      mediatype: image/svg+xml
+  links:
+    - name: GitHub
+      url: 'https://github.com/Apicurio/apicurio-registry/'
+    - name: Issues
+      url: 'https://github.com/Apicurio/apicurio-registry/issues'
+  install:
+    spec:
+      clusterPermissions:
+        - rules:
+            - apiGroups:
+                - config.openshift.io
+              resources:
+                - clusterversions
+              verbs:
+                - get
+            - apiGroups:
+                - apicur.io
+              resources:
+                - apicurioregistries
+              verbs:
+                - '*'
+          serviceAccountName: service-registry-operator
+      deployments:
+        - name: apicurio-registry
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                name: apicurio-registry
+            strategy: {}
+            template:
+              metadata:
+                creationTimestamp: null
+                labels:
+                  name: apicurio-registry
+              spec:
+                containers:
+                  - env:
+                      - name: REGISTRY_IMAGE_STREAMS
+                        value: >-
+                          registry.redhat.io/integration/service-registry-streams-rhel8@sha256:4b56da802333d2115cb3a0acc8d97445bd0dab67b639c361816df27b7f1aa296
+                      - name: REGISTRY_IMAGE_JPA
+                        value: >-
+                          registry.redhat.io/integration/service-registry-jpa-rhel8@sha256:d8abf5d3d6df9ef2414506f74e85cbcbec151d40d4fe7309c96ffaaf9a506fde
+                      - name: REGISTRY_IMAGE_INFINISPAN
+                        value: >-
+                          registry.redhat.io/integration/service-registry-infinispan-rhel8@sha256:a3abd12d6ecee1fe700ff93b52aeac842cdb17c4b7d225c624c82e2ea38c7a6a
+                      - name: WATCH_NAMESPACE
+                        valueFrom:
+                          fieldRef:
+                            fieldPath: metadata.namespace
+                      - name: POD_NAME
+                        valueFrom:
+                          fieldRef:
+                            fieldPath: metadata.name
+                      - name: OPERATOR_NAME
+                        value: apicurio-registry
+                    image: >-
+                      registry.redhat.io/integration/service-registry-rhel8-operator@sha256:a81240d826cb120235384d88693c89f8ac4e913301b5c348f962975287cf278f
+                    imagePullPolicy: Always
+                    name: apicurio-registry
+                    resources: {}
+                serviceAccountName: service-registry-operator
+      permissions:
+        - rules:
+            - apiGroups:
+                - route.openshift.io
+                - apps.openshift.io
+              resources:
+                - routes
+                - routes/custom-host
+                - deploymentconfigs
+              verbs:
+                - '*'
+            - apiGroups:
+                - ''
+                - extensions
+                - route.openshift.io
+              resources:
+                - pods
+                - services
+                - endpoints
+                - persistentvolumeclaims
+                - events
+                - configmaps
+                - secrets
+                - ingresses
+                - routes/custom-host
+              verbs:
+                - '*'
+            - apiGroups:
+                - apps
+              resources:
+                - deployments
+                - daemonsets
+                - replicasets
+                - statefulsets
+              verbs:
+                - '*'
+            - apiGroups:
+                - monitoring.coreos.com
+              resources:
+                - servicemonitors
+              verbs:
+                - get
+                - create
+            - apiGroups:
+                - apps
+              resourceNames:
+                - apicurio-registry
+              resources:
+                - deployments/finalizers
+              verbs:
+                - update
+            - apiGroups:
+                - ''
+              resources:
+                - pods
+              verbs:
+                - get
+            - apiGroups:
+                - apps
+              resources:
+                - replicasets
+              verbs:
+                - get
+            - apiGroups:
+                - apicur.io
+              resources:
+                - '*'
+              verbs:
+                - '*'
+          serviceAccountName: service-registry-operator
+    strategy: deployment
+  maintainers:
+    - email: apicurio@lists.jboss.org
+      name: Apicurio
+    - email: jsenko+apicurio@redhat.com
+      name: Jakub Senko
+    - email: ewittman+apicurio@redhat.com
+      name: Eric Wittmann
+  description: >
+    ## Service Registry
+
+
+    Service Registry stores and retrieves API designs and event schemas, and
+    gives you control of their evolution.
+
+
+    **Features**
+
+    - Supports: Apache Avro, AsyncAPI, GraphQL, JSON Schema, Kafka Connect
+    Schema, OpenAPI, Protobuf
+
+    - Provides a REST API and web UI to manage the artifacts and artifact
+    meta-data
+
+    - Includes Serializers and Deserializers for Kafka client integration
+
+    - Configurable rules to control schema validity and evolution
+    (compatibility)
+
+    - Storage options: Kafka Streams, Infinispan, PostgreSQL
+
+    - Compatible with Confluent and IBM APIs
+
+    - Runs on a lightweight Quarkus platform
+
+    - Includes Maven plugin to integrate with Maven based builds
+
+    ## Service Registry Operator
+
+
+    Provides a quick and easy way to deploy and manage service registry on
+    OpenShift.
+
+
+    **Features**
+
+    - Supports basic install and configuration of the Registry
+
+    - Can optionally create an Ingress to access the API and UI on HTTP port 80
+
+    - Manual horizontal scaling
+
+    - Easily perform a rolling upgrade of the Registry
+
+    ## Prerequisites
+
+    This operator does not deploy storage for the Registry. Therefore, some
+    storage options require that the chosen persistence service is already set
+    up.
+
+    ## License
+
+    Red Hat Service Registry Operator is licensed under the [Apache 2.0
+    license](https://github.com/Apicurio/apicurio-registry-operator/blob/master/LICENSE)
+  selector: {}
+status:
+  conditions:
+    - lastTransitionTime: '2020-10-01T18:51:25Z'
+      lastUpdateTime: '2020-10-01T18:51:25Z'
+      message: requirements not yet checked
+      phase: Pending
+      reason: RequirementsUnknown
+    - lastTransitionTime: '2020-10-01T18:51:25Z'
+      lastUpdateTime: '2020-10-01T18:51:25Z'
+      message: one or more requirements couldn't be found
+      phase: Pending
+      reason: RequirementsNotMet
+    - lastTransitionTime: '2020-10-01T18:51:27Z'
+      lastUpdateTime: '2020-10-01T18:51:27Z'
+      message: 'all requirements found, attempting install'
+      phase: InstallReady
+      reason: AllRequirementsMet
+    - lastTransitionTime: '2020-10-01T18:51:27Z'
+      lastUpdateTime: '2020-10-01T18:51:27Z'
+      message: waiting for install components to report healthy
+      phase: Installing
+      reason: InstallSucceeded
+    - lastTransitionTime: '2020-10-01T18:51:27Z'
+      lastUpdateTime: '2020-10-01T18:51:27Z'
+      message: >
+        installing: waiting for deployment apicurio-registry to become ready:
+        Waiting for deployment spec update to be observed...
+      phase: Installing
+      reason: InstallWaiting
+    - lastTransitionTime: '2020-10-01T18:51:31Z'
+      lastUpdateTime: '2020-10-01T18:51:31Z'
+      message: install strategy completed with no errors
+      phase: Succeeded
+      reason: InstallSucceeded
+  lastTransitionTime: '2020-10-01T18:51:31Z'
+  lastUpdateTime: '2020-10-01T18:51:31Z'
+  message: install strategy completed with no errors
+  phase: Succeeded
+  reason: InstallSucceeded
+  requirementStatus:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      message: CRD is present and Established condition is true
+      name: apicurioregistries.apicur.io
+      status: Present
+      uuid: 37b70bba-6704-462e-b986-bb22cc42792e
+      version: v1
+    - dependents:
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["*"],"apiGroups":["route.openshift.io","apps.openshift.io"],"resources":["routes","routes/custom-host","deploymentconfigs"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["*"],"apiGroups":["","extensions","route.openshift.io"],"resources":["pods","services","endpoints","persistentvolumeclaims","events","configmaps","secrets","ingresses","routes/custom-host"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["*"],"apiGroups":["apps"],"resources":["deployments","daemonsets","replicasets","statefulsets"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get","create"],"apiGroups":["monitoring.coreos.com"],"resources":["servicemonitors"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["update"],"apiGroups":["apps"],"resources":["deployments/finalizers"],"resourceNames":["apicurio-registry"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get"],"apiGroups":[""],"resources":["pods"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["get"],"apiGroups":["apps"],"resources":["replicasets"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            namespaced
+            rule:{"verbs":["*"],"apiGroups":["apicur.io"],"resources":["*"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["get"],"apiGroups":["config.openshift.io"],"resources":["clusterversions"]}
+          status: Satisfied
+          version: v1
+        - group: rbac.authorization.k8s.io
+          kind: PolicyRule
+          message: >-
+            cluster
+            rule:{"verbs":["*"],"apiGroups":["apicur.io"],"resources":["apicurioregistries"]}
+          status: Satisfied
+          version: v1
+      group: ''
+      kind: ServiceAccount
+      message: ''
+      name: service-registry-operator
+      status: Present
+      version: v1

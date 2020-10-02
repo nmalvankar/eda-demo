@@ -1,0 +1,37 @@
+﻿apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  selfLink: >-
+    /apis/kafka.strimzi.io/v1beta1/namespaces/registry/kafkatopics/global-id-topic
+  resourceVersion: '694666'
+  name: global-id-topic
+  uid: c9d157c5-7034-4118-802e-844523aff1ae
+  creationTimestamp: '2020-10-02T09:34:34Z'
+  generation: 1
+  managedFields:
+    - apiVersion: kafka.strimzi.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          .: {}
+          'f:conditions': {}
+          'f:observedGeneration': {}
+      manager: okhttp
+      operation: Update
+      time: '2020-10-02T09:34:34Z'
+  namespace: registry
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  config:
+    retention.ms: '604800000'
+    segment.bytes: '1073741824'
+  partitions: 10
+  replicas: 3
+  topicName: global-id-topic
+status:
+  conditions:
+    - lastTransitionTime: '2020-10-02T09:34:34.238Z'
+      status: 'True'
+      type: Ready
+  observedGeneration: 1

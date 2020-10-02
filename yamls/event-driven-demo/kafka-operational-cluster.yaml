@@ -1,0 +1,95 @@
+﻿apiVersion: kafka.strimzi.io/v1beta1
+kind: Kafka
+metadata:
+  creationTimestamp: '2020-10-01T18:56:29Z'
+  generation: 1
+  managedFields:
+    - apiVersion: kafka.strimzi.io/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          'f:entityOperator':
+            'f:topicOperator':
+              'f:topicMetadataMaxAttempts': {}
+              'f:zookeeperSessionTimeoutSeconds': {}
+            'f:userOperator':
+              'f:zookeeperSessionTimeoutSeconds': {}
+        'f:status':
+          'f:conditions': {}
+          'f:listeners': {}
+          'f:observedGeneration': {}
+      manager: okhttp
+      operation: Update
+      time: '2020-10-01T18:57:56Z'
+  name: operational-cluster
+  namespace: event-driven-demo
+  resourceVersion: '478221'
+  selfLink: >-
+    /apis/kafka.strimzi.io/v1beta1/namespaces/event-driven-demo/kafkas/operational-cluster
+  uid: a43882c3-64c3-47f1-8d4c-0485013c0be8
+spec:
+  entityOperator:
+    topicOperator:
+      reconciliationIntervalSeconds: 90
+    userOperator:
+      reconciliationIntervalSeconds: 120
+  kafka:
+    config:
+      log.message.format.version: '2.5'
+      offsets.topic.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      transaction.state.log.replication.factor: 3
+    listeners:
+      plain:
+        authentiation:
+          type: scram-sha-512
+      tls:
+        authentiation:
+          type: tls
+    replicas: 3
+    storage:
+      type: ephemeral
+    version: 2.5.0
+  zookeeper:
+    replicas: 3
+    storage:
+      type: ephemeral
+status:
+  conditions:
+    - lastTransitionTime: '2020-10-01T18:57:56+0000'
+      status: 'True'
+      type: Ready
+  listeners:
+    - addresses:
+        - host: operational-cluster-kafka-bootstrap.event-driven-demo.svc
+          port: 9092
+      bootstrapServers: 'operational-cluster-kafka-bootstrap.event-driven-demo.svc:9092'
+      type: plain
+    - addresses:
+        - host: operational-cluster-kafka-bootstrap.event-driven-demo.svc
+          port: 9093
+      bootstrapServers: 'operational-cluster-kafka-bootstrap.event-driven-demo.svc:9093'
+      certificates:
+        - |
+          -----BEGIN CERTIFICATE-----
+          MIIDLTCCAhWgAwIBAgIJAKIrXVIjfaSbMA0GCSqGSIb3DQEBCwUAMC0xEzARBgNV
+          BAoMCmlvLnN0cmltemkxFjAUBgNVBAMMDWNsdXN0ZXItY2EgdjAwHhcNMjAxMDAx
+          MTg1NjMxWhcNMjExMDAxMTg1NjMxWjAtMRMwEQYDVQQKDAppby5zdHJpbXppMRYw
+          FAYDVQQDDA1jbHVzdGVyLWNhIHYwMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB
+          CgKCAQEA8iEyEuZjREy3j7IvfmaNERsYSks3AflmeTPPayi2Pwv93MRw/isfKD3y
+          uWmciArmvIGq7AG0qALG2s8q4d1m6ZGKEw3Gz68661Z9jiasI/TWtn4C2Tzn7yXx
+          ujARs1PeO4JiVNOb2y3tXKTm4EM877x+gi/vD4MAf4EzX7lLOPKSKy5GHBUUA4yr
+          vV/2C5jkIltO812R279j+ibwbDtbcluRKdoU3WOKCFQ/x1e+n79vm3z3MfGcdT8R
+          AhzCKzIvO38CyoSjtEqqYRqITNj/OIYioqoQycpcT1KQPotsksMD2npUy6I/upZo
+          +RFIj5K2NnzhDH/Gr+msAoIbH0pu7QIDAQABo1AwTjAdBgNVHQ4EFgQUok2Cliep
+          dvnM8fyuWNcF/bvOah8wHwYDVR0jBBgwFoAUok2CliepdvnM8fyuWNcF/bvOah8w
+          DAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAfrwyoKvq2fbD6hhizlSl
+          wiwFwslAozqIY72dhDLx0oqzQpk3PF5UYxAIVI5i6vJlvdQEnZ3r7DDi1KTAZdkW
+          jUCAeDt2JhgchjkpY7mMBbMSSORUlTj1nEUgOsjrVN1Onso/Ozr7s5Y1RQodONbF
+          s+HICsajH61fVX8VqdaR6LhjVtZnytZRYtGlvMzpv9ekz+i3X4TNKZF68EdsbdhS
+          +LN4J14bj8zSfqw6WFQOmO2KxOMZWUsTLGMOxrRTlG/waGK8IhEeEArA4Q/XZ/wF
+          yFc5u3cDh0IAum3IAmLmxU+j7S7jaOsXuBrvjWBNm/odK9Ee+JIN7I4MEkajJ55v
+          nw==
+          -----END CERTIFICATE-----
+      type: tls
+  observedGeneration: 1

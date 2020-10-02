@@ -4,5 +4,6 @@
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/event-emitter" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/event-processor-eda" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rhdm-realtime-event-decisioning-demo-event-analysis-webapp" vcs="Git" />
   </component>
 </project>
