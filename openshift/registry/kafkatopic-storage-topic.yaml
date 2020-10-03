@@ -1,0 +1,14 @@
+﻿apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  name: storage-topic
+  namespace: registry
+  labels:
+    strimzi.io/cluster: my-cluster
+spec:
+  config:
+    retention.ms: '604800000'
+    segment.bytes: '1073741824'
+  partitions: 10
+  replicas: 3
+  topicName: storage-topic

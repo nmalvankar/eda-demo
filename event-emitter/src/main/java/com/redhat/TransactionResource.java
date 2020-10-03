@@ -23,7 +23,7 @@ public class TransactionResource {
 
 
     @POST
-    public Response enqueueMovie(Transaction transaction) {
+    public Response enqueueTxn(Transaction transaction) {
         System.out.println("came here");
         LOGGER.infof("Sending transactions %s to Kafka", transaction.getId());
         emitter.send(transaction);

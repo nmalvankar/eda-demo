@@ -1,6 +1,6 @@
 package com.redhat;
 
-public class    Transaction {
+public class Transaction {
     private String id;
     private String country;
     private String amount;
