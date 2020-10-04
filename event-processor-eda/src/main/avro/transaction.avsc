@@ -1,6 +1,6 @@
 {
 	"type": "record",
-	"name": "transaction",
+	"name": "txn",
 	"namespace": "com.redhat",
 	"fields": [{
 			"name": "id",
