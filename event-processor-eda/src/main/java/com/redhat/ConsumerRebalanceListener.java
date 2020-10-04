@@ -1,0 +1,54 @@
+package com.redhat;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
+import org.jboss.logging.Logger;
+
+import io.smallrye.mutiny.Uni;
+import io.smallrye.reactive.messaging.kafka.KafkaConsumerRebalanceListener;
+import io.vertx.kafka.client.common.TopicPartition;
+import io.vertx.mutiny.kafka.client.consumer.KafkaConsumer;
+
+@ApplicationScoped
+@Named("txn-from-kafka.rebalancer")
+public class ConsumerRebalanceListener implements KafkaConsumerRebalanceListener {
+	
+	private static final Logger LOGGER = Logger.getLogger("ConsumerRebalanceListener");
+	
+	
+	
+    @Override
+    public Uni<Void> onPartitionsAssigned(KafkaConsumer<?, ?> consumer, Set<TopicPartition> topicPartitions) {
+        
+        return Uni
+            .combine()
+            .all()
+            .unis(topicPartitions
+                .stream()
+                .map(topicPartition -> {
+                    LOGGER.info("Assigned " + topicPartition);
+                    return consumer.committed(topicPartition)
+                        .onItem()
+                        .invoke(o -> LOGGER.info("Seeking to " + o))
+                        .onItem()
+                        .produceUni(o -> consumer
+                            .seek(topicPartition, o == null ? 0L : o.getOffset())
+                            .onItem()
+                            .invoke(v -> LOGGER.info("Seeked to " + o))
+                        );
+                })
+                .collect(Collectors.toList()))
+            .combinedWith(a -> null);
+    }
+
+	@Override
+	public Uni<Void> onPartitionsRevoked(KafkaConsumer<?, ?> arg0, Set<TopicPartition> arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

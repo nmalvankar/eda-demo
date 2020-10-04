@@ -40,6 +40,18 @@
       <artifactId>quarkus-resteasy-jsonb</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-mirror-client</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.vertx/vertx-kafka-client -->
+	<dependency>
+	    <groupId>io.vertx</groupId>
+	    <artifactId>vertx-kafka-client</artifactId>
+	    <!-- <version>4.0.0-milestone5</version> -->
+	</dependency>
+    
+    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
