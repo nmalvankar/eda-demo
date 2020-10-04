@@ -19,7 +19,7 @@ public class TransactionConsumer {
 
     @Incoming("txn-from-kafka")
     public void receive(Transaction transaction) {
-        LOGGER.infof("Received movie:", transaction.getId(), transaction.getAmount());
+        LOGGER.infof("Received transaction:", transaction.getId(), transaction.getAmount());
         try {
             if (transaction.getMerchantId().equals("MERCH0001") && transaction.getCountry().equals("IR")) {
                 LOGGER.info("message check failed");
