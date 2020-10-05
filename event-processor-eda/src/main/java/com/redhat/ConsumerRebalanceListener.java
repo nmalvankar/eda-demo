@@ -14,7 +14,7 @@ import io.vertx.kafka.client.common.TopicPartition;
 import io.vertx.mutiny.kafka.client.consumer.KafkaConsumer;
 
 @ApplicationScoped
-@Named("transaction.rebalancer")
+@Named("txn-from-kafka.rebalancer")
 public class ConsumerRebalanceListener implements KafkaConsumerRebalanceListener {
 	
 	private static final Logger LOGGER = Logger.getLogger("ConsumerRebalanceListener");
