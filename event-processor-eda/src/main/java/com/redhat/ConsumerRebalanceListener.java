@@ -50,6 +50,8 @@ public class ConsumerRebalanceListener implements KafkaConsumerRebalanceListener
     public Uni<Void> onPartitionsAssigned(KafkaConsumer<?, ?> consumer, Set<TopicPartition> topicPartitions) {
         long now = System.currentTimeMillis();
         long shouldStartAt = now - 600_000L; //10 minute ago
+        
+        
 
         return Uni
             .combine()
@@ -58,8 +60,8 @@ public class ConsumerRebalanceListener implements KafkaConsumerRebalanceListener
                 .stream()
                 .map(topicPartition -> {
                     LOGGER.info("Assigned " + topicPartition);
-                    //return consumer.offsetsForTimes(topicPartition, shouldStartAt)
-                    return consumer.committed(topicPartition)
+                    return consumer.offsetsForTimes(topicPartition, shouldStartAt)
+                    //return consumer.committed(topicPartition)
                         .onItem()
                         .invoke(o -> LOGGER.info("Seeking to " + o))
                         .onItem()
@@ -78,5 +80,52 @@ public class ConsumerRebalanceListener implements KafkaConsumerRebalanceListener
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+//    public OffsetAndMetadata findHighestMirroredOffset(List<Map<TopicPartition, OffsetAndMetadata>> mirroredOffsets, TopicPartition partition) {
+//        OffsetAndMetadata foundOffset = null;
+//
+//        for (Map<TopicPartition, OffsetAndMetadata> offsets : mirroredOffsets)  {
+//            if (offsets.containsKey(partition)) {
+//                if (foundOffset == null)    {
+//                    foundOffset = offsets.get(partition);
+//                } else  {
+//                    OffsetAndMetadata newOffset = offsets.get(partition);
+//                    if (foundOffset.offset() < newOffset.offset())   {
+//                        foundOffset = newOffset;
+//                    }
+//                }
+//            }
+//        }
+//
+//        return foundOffset;
+//    }
+//    
+//    public List<Map<TopicPartition, OffsetAndMetadata>> getMirroredOffsets() {
+//        Set<String> clusters = null;
+//        try {
+//            clusters = RemoteClusterUtils.upstreamClusters(props);
+//        } catch (InterruptedException e) {
+//            LOGGER.error("Failed to get remote cluster", e);
+//            return Collections.emptyList();
+//        } catch (TimeoutException e) {
+//        	LOGGER.error("Failed to get remote cluster", e);
+//            return Collections.emptyList();
+//        }
+//
+//        List<Map<TopicPartition, OffsetAndMetadata>> mirroredOffsets = new ArrayList<>();
+//
+//        for (String cluster : clusters) {
+//            try {
+//                mirroredOffsets.add(RemoteClusterUtils.translateOffsets(props, cluster, props.get(ConsumerConfig.GROUP_ID_CONFIG).toString(), Duration.ofMinutes(1)));
+//            } catch (InterruptedException e) {
+//            	LOGGER.error("Failed to translate offsets", e);
+//                e.printStackTrace();
+//            } catch (TimeoutException e) {
+//            	LOGGER.error("Failed to translate offsets", e);
+//            }
+//        }
+//
+//        return mirroredOffsets;
+//    }
 	
 }
