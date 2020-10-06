@@ -19,7 +19,7 @@ public class TransactionConsumer {
     private static final Logger LOGGER = Logger.getLogger("TransactionConsumer");
 
     @Incoming("txn-from-kafka")
-    //@Acknowledgment(Acknowledgment.Strategy.NONE)
+    @Acknowledgment(Acknowledgment.Strategy.NONE)
     public void receive(Transaction transaction) {
         LOGGER.infof("Received transaction:", transaction.getId(), transaction.getAmount());
         try {
